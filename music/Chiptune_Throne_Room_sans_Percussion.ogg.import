@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chiptune_Throne_Room_sans_Percussion.ogg-072157e9fef474ffbbc077f8a5a92746.oggstr"
+
+[deps]
+
+source_file="res://music/Chiptune_Throne_Room_sans_Percussion.ogg"
+dest_files=[ "res://.import/Chiptune_Throne_Room_sans_Percussion.ogg-072157e9fef474ffbbc077f8a5a92746.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

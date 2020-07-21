@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chiptune_Nobility.ogg-ea156f7840df22c5b3787d7197222bfa.oggstr"
+
+[deps]
+
+source_file="res://music/Chiptune_Nobility.ogg"
+dest_files=[ "res://.import/Chiptune_Nobility.ogg-ea156f7840df22c5b3787d7197222bfa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

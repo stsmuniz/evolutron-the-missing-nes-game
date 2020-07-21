@@ -1,0 +1,157 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fonts/defaultFont_8.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/StartMenuFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://screens_menus/StartMenu.gd" type="Script" id=4]
+[ext_resource path="res://screens_menus/fadeOutTransition.tres" type="Animation" id=5]
+
+[sub_resource type="DynamicFontData" id=1]
+antialiased = false
+font_path = "res://fonts/Lady Radical 2.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 33
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxLine" id=4]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxLine" id=5]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PressStart:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 119.958, 15.8722, 223.537 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 127.524, 16.1619, 237.666 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 58.0
+margin_right = 256.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 2 )
+text = "Evolutron"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+visible = false
+margin_top = 120.0
+margin_right = 256.0
+margin_bottom = 176.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="MenuContainer"]
+margin_right = 256.0
+margin_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 256, 16 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Start"
+flat = true
+
+[node name="OptionsButton" type="Button" parent="MenuContainer"]
+margin_top = 20.0
+margin_right = 256.0
+margin_bottom = 36.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 256, 16 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Options"
+flat = true
+
+[node name="QuitButton" type="Button" parent="MenuContainer"]
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 256, 16 )
+focus_neighbour_top = NodePath("../OptionsButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../OptionsButton")
+custom_styles/focus = SubResource( 5 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Quit"
+flat = true
+
+[node name="PressStart" type="Label" parent="."]
+margin_top = 147.0
+margin_right = 256.0
+margin_bottom = 165.0
+custom_fonts/font = ExtResource( 3 )
+text = "Press Start Button"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Copyright" type="Label" parent="."]
+margin_left = 1.47018
+margin_top = 190.04
+margin_right = 257.47
+margin_bottom = 223.04
+custom_fonts/font = ExtResource( 1 )
+text = "TM and ©
+@stsmuniz and @artmuniz
+Unlicensed by Amdré Young"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "BlinkStartLabel"
+anims/BlinkStartLabel = SubResource( 6 )
+anims/fadeOutTransition = ExtResource( 5 )
+[connection signal="pressed" from="MenuContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MenuContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="MenuContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

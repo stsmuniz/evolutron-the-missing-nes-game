@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/StartMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://screens_menus/GameOver.gd" type="Script" id=2]
+[ext_resource path="res://ui/TransitionOverlay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://screens_menus/fadeOutTransition.tres" type="Animation" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "showText"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ null ],
+"method": "_on_AnimationPlayer_animation_finished"
+} ]
+}
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 120.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 128.0 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 110.0
+margin_right = 128.0
+margin_bottom = 120.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Game Over"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fadeOut = ExtResource( 4 )
+anims/showText = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="TransitionOverlay" parent="." instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

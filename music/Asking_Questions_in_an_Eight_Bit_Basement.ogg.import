@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Asking_Questions_in_an_Eight_Bit_Basement.ogg-cfc9d54e52fbc1d173a5c7bf53f5a6cd.oggstr"
+
+[deps]
+
+source_file="res://music/Asking_Questions_in_an_Eight_Bit_Basement.ogg"
+dest_files=[ "res://.import/Asking_Questions_in_an_Eight_Bit_Basement.ogg-cfc9d54e52fbc1d173a5c7bf53f5a6cd.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

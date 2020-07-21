@@ -1,0 +1,127 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://hitbox_hurtbox/hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://engine/WhiteColorShader.shader" type="Shader" id=2]
+[ext_resource path="res://enemies/shadow.png" type="Texture" id=3]
+[ext_resource path="res://hitbox_hurtbox/SoftCollision.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemies/PlayerDetectionZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://enemies/WanderController.tscn" type="PackedScene" id=6]
+[ext_resource path="res://enemies/Stats.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemies/bosses/rat/rat_boss.png" type="Texture" id=8]
+[ext_resource path="res://BlinkAnimationPlayer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://hitbox_hurtbox/hurtbox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://enemies/bosses/rat/RatBoss.gd" type="Script" id=11]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/active = false
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "bash",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 4.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 18.255, 12.8108 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 17.6433, 12.6069 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 95.7578
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 15.6964, 8.21315 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 16.6237, 11.5874 )
+
+[node name="rat" type="KinematicBody2D"]
+collision_layer = 16
+script = ExtResource( 11 )
+
+[node name="shadow" type="Sprite" parent="."]
+scale = Vector2( 1.25, 1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+frames = SubResource( 6 )
+animation = "walk"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+
+[node name="hurtbox" parent="." instance=ExtResource( 10 )]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+shape = SubResource( 8 )
+
+[node name="Stats" parent="." instance=ExtResource( 7 )]
+max_health = 16
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 5 )]
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource( 9 )
+
+[node name="hitbox" parent="." instance=ExtResource( 1 )]
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2( -0.5, 0.5 )
+shape = SubResource( 10 )
+
+[node name="SoftCollision" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 11 )
+
+[node name="WanderController" parent="." instance=ExtResource( 6 )]
+wander_range = 64
+
+[node name="BlinkAnimationPlayer" parent="." instance=ExtResource( 9 )]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+
+[editable path="hurtbox"]
+
+[editable path="PlayerDetectionZone"]
+
+[editable path="hitbox"]
+
+[editable path="SoftCollision"]

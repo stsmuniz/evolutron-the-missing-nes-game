@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://screens_menus/OptionsMenu.gd" type="Script" id=1]
+[ext_resource path="res://fonts/StartMenuFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/grabber.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 1, 1, 1, 1 )
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id=3]
+
+[sub_resource type="StyleBoxLine" id=4]
+color = Color( 0, 0, 0, 0 )
+
+[node name="optionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 119.958, 15.8722, 223.537, 199.0, 182.0, 165.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 128.0, 16.1619, 237.666 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 82.0
+margin_top = 191.0
+margin_right = 173.0
+margin_bottom = 207.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Back to Title"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsTitle" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 32.0
+margin_right = 257.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 2 )
+text = "Options"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VolumeContainer" type="Control" parent="."]
+visible = false
+margin_top = -62.0
+margin_bottom = -62.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeLabel" type="Label" parent="VolumeContainer"]
+margin_left = 16.0
+margin_top = 155.0
+margin_right = 127.0
+margin_bottom = 173.0
+custom_fonts/font = ExtResource( 2 )
+text = "Master Volume:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VolumeContainer"]
+margin_left = 128.0
+margin_top = 158.0
+margin_right = 237.0
+margin_bottom = 174.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
+custom_styles/slider = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+max_value = 1.0
+step = 0.1
+value = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindowModeContainer" type="Control" parent="."]
+margin_top = -30.0
+margin_right = 40.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoModeLabel" type="Label" parent="WindowModeContainer"]
+margin_left = 16.0
+margin_top = 165.0
+margin_right = 128.0
+margin_bottom = 182.0
+custom_fonts/font = ExtResource( 2 )
+text = "Window Mode:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoModeButton" type="Button" parent="WindowModeContainer"]
+margin_left = 143.0
+margin_top = 165.0
+margin_right = 225.0
+margin_bottom = 181.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Windowed"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="value_changed" from="VolumeContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="pressed" from="WindowModeContainer/VideoModeButton" to="." method="_on_VideoModeButton_pressed"]

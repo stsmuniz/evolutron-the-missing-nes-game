@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/StartMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://engine/GameManager.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 0, 0, 0, 0 )
+
+[node name="MenuPausa" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 140.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 128.0 ]
+}
+
+[node name="Pause" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.752941 )
+
+[node name="Label" type="Label" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -34.0
+margin_top = -57.0
+margin_right = 13.0
+margin_bottom = -39.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "Pause"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Pause"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Resume" type="Button" parent="Pause/Control"]
+margin_left = 77.0
+margin_top = 107.0
+margin_right = 180.0
+margin_bottom = 127.0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Resume Game"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Button" parent="Pause/Control"]
+margin_left = 78.0
+margin_top = 128.0
+margin_right = 179.0
+margin_bottom = 148.0
+custom_styles/focus = SubResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Back to Title"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Pause/Control"]
+margin_left = 79.0
+margin_top = 149.0
+margin_right = 180.0
+margin_bottom = 169.0
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.6, 0.6, 0.6, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "Quit Game"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Pause/Control/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="Pause/Control/Title" to="." method="_on_Title_pressed"]
+[connection signal="pressed" from="Pause/Control/Quit" to="." method="_on_Quit_pressed"]

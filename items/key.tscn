@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://engine/outline.shader" type="Shader" id=1]
+[ext_resource path="res://items/tileset_1bit.png" type="Texture" id=2]
+[ext_resource path="res://items/key.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/width = 1.0
+shader_param/outline_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 7 )
+
+[node name="key" type="Area2D"]
+scale = Vector2( 0.7, 0.7 )
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 114, 81, 12, 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_key_body_entered"]

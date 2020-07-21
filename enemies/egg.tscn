@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemies/egg.png" type="Texture" id=1]
+[ext_resource path="res://enemies/egg.gd" type="Script" id=2]
+[ext_resource path="res://hitbox_hurtbox/hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemies/Stats.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="egg" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 2
+
+[node name="hurtbox" parent="." instance=ExtResource( 3 )]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+shape = SubResource( 1 )
+
+[node name="Stats" parent="." instance=ExtResource( 4 )]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="hurtbox"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Bad_Graffix_Crow.ogg-2516b67e7f1a9a8df6d45a441913a943.oggstr"
+
+[deps]
+
+source_file="res://music/Bad_Graffix_Crow.ogg"
+dest_files=[ "res://.import/Bad_Graffix_Crow.ogg-2516b67e7f1a9a8df6d45a441913a943.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
