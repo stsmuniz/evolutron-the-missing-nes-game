@@ -97,11 +97,11 @@ func range_state():
 	
 func shoot():
 	var bulletPool: = []
-	var b = Bullet.instance()
+	var nut = Bullet.instance()
 	if bulletPool.size() < max_bullets:
-		bulletPool.append(b)
+		bulletPool.append(nut)
 	else:
-		b.queue_free()
+		nut.queue_free()
 	
 	for b in bulletPool:
 		owner.add_child(b)

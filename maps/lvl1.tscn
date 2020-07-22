@@ -454,7 +454,7 @@ position = Vector2( 392, -432 )
 position = Vector2( -648, -264 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 128, 144 )
+position = Vector2( 127.128, 141.509 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, 0 )
@@ -736,3 +736,4 @@ position = Vector2( -624, 760 )
 [node name="rat" parent="." instance=ExtResource( 15 )]
 position = Vector2( -640, 912 )
 [connection signal="key_changed" from="player" to="hud" method="_on_player_key_changed"]
+[connection signal="boss_killed" from="rat" to="NextLevelDoor" method="_on_rat_boss_killed"]

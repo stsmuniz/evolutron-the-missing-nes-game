@@ -1574,4 +1574,5 @@ position = Vector2( 128, 144 )
 position = Vector2( 0, 0 )
 
 [node name="hud" parent="." instance=ExtResource( 4 )]
+[connection signal="boss_killed" from="Enemies/h" to="NextLevelDoor" method="_on_h_boss_killed"]
 [connection signal="key_changed" from="player" to="hud" method="_on_player_key_changed"]
