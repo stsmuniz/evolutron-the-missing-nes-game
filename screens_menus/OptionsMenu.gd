@@ -1,9 +1,9 @@
 extends Control
 
-onready var videoButton: Label = $WindowModeContainer/VideoModeButton
-onready var masterVolume: Slider = $VolumeContainer/MasterVolumeSlider
-onready var musicVolume: Slider = $VolumeContainer/MusicVolumeSlider
-onready var sfxVolume: Slider = $VolumeContainer/SFXVolumeSlider
+onready var videoButton: = $WindowModeContainer/VideoModeButton
+onready var masterVolume: = $VolumeContainer/MasterVolumeSlider
+onready var musicVolume: = $VolumeContainer/MusicVolumeSlider
+onready var sfxVolume: = $VolumeContainer/SFXVolumeSlider
 
 func _on_BackButton_pressed():
 
@@ -11,12 +11,18 @@ func _on_BackButton_pressed():
 	
 
 func _ready():
+	Options.choose_music('stop')
 	$BackButton.grab_focus()
+	if Options.fullscreen:
+		videoButton.set_text('Fullscreen')
+	else:
+		videoButton.set_text('Windowed')
 
 
 func _on_VideoModeButton_pressed():
 	Options.set_fullscreen()
-	if videoButton.text != 'Fullscreen':
+	
+	if Options.fullscreen:
 		videoButton.set_text('Fullscreen')
 	else:
 		videoButton.set_text('Windowed')

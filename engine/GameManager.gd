@@ -34,4 +34,5 @@ func _on_Quit_pressed():
 func _on_Resume_pressed():
 	Options.paused = false
 	Options.pause_menu = false
+	get_tree().paused = false
 	hide()

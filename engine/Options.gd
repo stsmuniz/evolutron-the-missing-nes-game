@@ -29,9 +29,6 @@ func _ready():
 	choose_music()
 
 func _process(delta):
-	if !$Music.is_playing():
-		choose_music()
-	
 	if (Master_Volume > 0 and Music_Volume > 0):
 		play_Music = int(((Master_Volume / 2000) * (Music_Volume / 2000)) * 2000)
 	else:

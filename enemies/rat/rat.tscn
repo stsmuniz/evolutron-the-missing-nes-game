@@ -62,6 +62,7 @@ offset = Vector2( 0, 5 )
 material = SubResource( 1 )
 frames = SubResource( 4 )
 animation = "FLy"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -75,7 +76,7 @@ collision_layer = 8
 shape = SubResource( 6 )
 
 [node name="Stats" parent="." instance=ExtResource( 5 )]
-max_health = 4
+max_health = 2
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 4 )]
 visible = false

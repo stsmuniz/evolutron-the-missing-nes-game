@@ -1,6 +1,10 @@
 extends Control
 
+onready var optionPressed = false
+
+
 func _ready():
+	optionPressed = false
 	Options.choose_music("menu")
 
 func _unhandled_input(event):
@@ -15,12 +19,18 @@ func _unhandled_input(event):
 
 
 func _on_StartButton_pressed():
-	Options.game_sound("select_option")
-	SceneChanger.change_scene("res://maps/lvl1.tscn")
+	if optionPressed == false:
+		optionPressed = true
+		Options.game_sound("select_option")
+		SceneChanger.change_scene("res://maps/lvl1.tscn")
 
 func _on_OptionsButton_pressed():
-	SceneChanger.change_scene("res://screens_menus/OptionsMenu.tscn", 0.1)
+	if optionPressed == false:
+		optionPressed = true
+		SceneChanger.change_scene("res://screens_menus/OptionsMenu.tscn", 0.1)
 
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	if optionPressed == false:
+		optionPressed = true
+		get_tree().quit()
